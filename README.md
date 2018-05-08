@@ -96,34 +96,7 @@ The compiled version of the above proto.
 Removing that single extra unused field resolves the problem, it never crashes again:
 
 ```
---- lib/change_bad.dart	2018-05-08 07:29:35.000000000 +0200
-+++ lib/change_works2.dart	2018-05-08 08:08:48.000000000 +0200
-@@ -2,7 +2,7 @@
- //  Generated code. Do not modify.
- ///
- // ignore_for_file: non_constant_identifier_names,library_prefixes
--library draft_change_bad;
-+library draft_change_works2;
- 
- // ignore: UNUSED_SHOWN_NAME
- import 'dart:core' show int, bool, double, String, List, override;
-@@ -45,9 +45,14 @@
- 
- class _ReadonlyV2 extends V2 with ReadonlyMessageMixin {}
- 
-+V2 _getDefaultV2Wrapper() {
-+  throw "getDefaultV2Wrapper called";
-+  //return V2.getDefault();
-+}
-+
- class V2Container extends GeneratedMessage {
-   static final BuilderInfo _i = new BuilderInfo('V2Container')
--    ..a<V2>(1, 'coords', PbFieldType.OM, V2.getDefault, V2.create)
-+    ..a<V2>(1, 'coords', PbFieldType.OM, _getDefaultV2Wrapper, V2.create)
-     ..hasRequiredFields = false
-   ;
- 
-[baldvin@baldvin-macbookpro websocketcrash]$ diff -u lib/change_bad.dart lib/change_works1.dart 
+$ diff -u lib/change_bad.dart lib/change_works1.dart 
 --- lib/change_bad.dart	2018-05-08 07:29:35.000000000 +0200
 +++ lib/change_works1.dart	2018-05-08 07:29:28.000000000 +0200
 @@ -2,7 +2,7 @@
