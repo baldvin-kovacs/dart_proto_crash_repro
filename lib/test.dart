@@ -49,7 +49,7 @@ void testWorks2() {
 }
 
 void main() {
-  testWorks1();
-  testWorks2();
+  //testWorks1();
+  //testWorks2();
   testBad();
 }
